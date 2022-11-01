@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Register() {
     const navigate = useNavigate();
     async function onRegisterHandler(name,email,password,confirm){
-        if(password == confirm){
+        if(password === confirm){
             const user = {name, email, password}
             const {error} = await register(user);
             if(!error){

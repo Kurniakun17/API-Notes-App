@@ -16,8 +16,8 @@ export default function LoginInput({onLogin}) {
         <input id='email' className='input-login' type={'email'} placeholder='test@123.com' value={email} onChange={setEmail}></input>
         <label htmlFor='password'>Password</label>
         <input id='password' type={'password'} placeholder='test1234' value={password} onChange={setPassword}></input>
-        <button type='submit'>Sign in</button>
-        <h4>Belum punya akun? Ayo <Link to={'/register'}>sign up</Link></h4>
+        <button type='submit' className='button'>Sign in</button>
+        <h4>Belum punya akun? Ayo <Link to={'/register'}>Sign up</Link></h4>
     </form>
   )
 }

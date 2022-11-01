@@ -1,4 +1,4 @@
-:root {
+[data-theme="dark"] {
   --primary: #BB86FC;
   --primary-variant: #3700B3;
   --secondary: #03DAC6;
@@ -43,14 +43,16 @@ body {
 
 header {
   display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 16px;
   border-bottom: 1px solid var(--on-background);
+  background: linear-gradient(to right, #0cebeb, #20e3b2, #29ffc6);;
 }
 
-header h1 {
-  flex: 1;
+.navigation{
+  display: flex;
+  min-width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 header .navigation ul li {
@@ -66,6 +68,19 @@ main {
   min-height: 100vh;
   max-width: 1200px;
 }
+
+.home-container{
+  padding: 16px;
+  height: 100vh;
+  background-color: var(--on-background);
+  color: var(--background);
+}
+
+.home-header{
+  display: flex;
+  justify-content: space-between;
+}
+
 .home h1{
   font-size: 50px;
 }
@@ -259,8 +274,8 @@ main {
 }
 
 .login-container, .register-container{
-  background-color: var(--background);
-  color: var(--on-background);
+  background-color: var(--on-background);
+  color: var(--background);
   padding-top: 5vh;
   min-height: 100vh;
 }
@@ -290,8 +305,8 @@ main {
   padding: 8px;
   background-color: transparent;
   border-radius: 8px;
-  border: 3px solid var(--on-background);
-  color: var(--on-background)
+  border: 3px solid var(--background);
+  color: var(--background)
 }
 
 .input-login h4, .input-register h4{
@@ -304,7 +319,7 @@ main {
   font-size: 24px;
   width: 100%;
   padding: 12px;
-  border: 0;
+  border: 3px solid var(--background);
   border-radius: 8px;
   background-color: var(--on-background);
   color: var(--background);
@@ -319,9 +334,16 @@ main {
   border: 0;
   font-size: 28px;
   cursor: pointer;
-  color: var(--on-background);
+  color: var(--backgroundbackground);
 }
 
+.button-logout p{
+  display: inline;
+}
+
+/* Icons */
+
+=
 @media screen and (min-width: 650px) {
   .notes-list {
     grid-template-columns: repeat(2, 1fr);

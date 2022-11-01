@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from './pages/Login';
 import Register from './pages/Register';
-import {FiLogOut} from 'react-icons/fi';
 import { getUserLogged, putAccessToken } from './utils/network-data';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import ThemeContext from './contexts/ThemeContext';
 
 export default function App() {
     const [auth, setAuth] = useState();
-    const [loading, setLoading] = useState();
+    const [theme, setTheme] = useState(localStorage.getItem('theme')||'light');
     const [initializing, setInitializing] = useState(true);
 
     useEffect(()=>{
@@ -19,7 +21,8 @@ export default function App() {
                 setInitializing(false);
             }
         })
-    },[])
+        document.body.setAttribute('data-theme',theme)
+    },[theme])
 
     async function LoginSucces({accessToken}){
         putAccessToken(accessToken);
@@ -34,9 +37,27 @@ export default function App() {
         putAccessToken('')
     }
 
+    function toggleTheme(){
+        setTheme((prevTheme)=>{
+            const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+            
+            localStorage.setItem('theme', newTheme);
+            return newTheme
+        })
+    }
+
+    const ThemeContextValue = useMemo(()=>{
+        return{
+            theme,
+            toggleTheme
+        };
+    },[theme]);
+
+
     return (<>
             {initializing ? null :
-            <div>
+            <ThemeContext.Provider value={ThemeContextValue}>
+                <Navbar></Navbar>
                 {!auth && 
                 <Routes>
                     <Route path='/*' element={<Login LoginSucces={LoginSucces}></Login>}/>
@@ -46,12 +67,13 @@ export default function App() {
                 {
                     auth && 
                     <>
-                        <p>Welcome! {auth.name}</p>
-                        <FiLogOut onClick={onLogoutHandler}></FiLogOut>
+                        <Routes>
+                            <Route path='/' element={<Home onLogout={onLogoutHandler} name={auth.name}></Home>}></Route>
+                            <Route></Route>
+                        </Routes>
                     </>
-                    
                 }
-            </div>
+            </ThemeContext.Provider>
             }
         </>
     )
