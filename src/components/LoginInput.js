@@ -1,5 +1,5 @@
 import React from 'react'
-import UseInput from '../components/UseInput';
+import UseInput from '../contexts/UseInput';
 import { Link } from 'react-router-dom';
 
 export default function LoginInput({onLogin}) {
