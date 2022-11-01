@@ -7,12 +7,14 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ThemeContext from './contexts/ThemeContext';
 import Add from './pages/Add';
+import DetailedNote from './pages/DetailedNote';
 
 export default function App() {
     const [auth, setAuth] = useState();
     const [theme, setTheme] = useState(localStorage.getItem('theme')||'light');
     const [initializing, setInitializing] = useState(true);
-    // const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
         getUserLogged().then(({error, data})=>{
@@ -60,21 +62,24 @@ export default function App() {
             {initializing ? null :
             <ThemeContext.Provider value={ThemeContextValue}>
                 <Navbar auth={auth}></Navbar>
-                {!auth && 
-                <Routes>
-                    <Route path='/*' element={<Login LoginSucces={LoginSucces}></Login>}/>
-                    <Route path='/register' element={<Register></Register>}/>
-                </Routes>
-                }
-                {
-                    auth && 
-                    <>
-                        <Routes>
-                            <Route path='/' element={<Home onLogout={onLogoutHandler} name={auth.name}></Home>}></Route>
-                            <Route path='/add' element={<Add></Add>}></Route>
-                        </Routes>
-                    </>
-                }
+                <div className='body-container'>
+                    {!auth && 
+                    <Routes>
+                        <Route path='/*' element={<Login LoginSucces={LoginSucces}></Login>}/>
+                        <Route path='/register' element={<Register></Register>}/>
+                    </Routes>
+                    }
+                    {
+                        auth && 
+                        <>
+                            <Routes>
+                                <Route path='/' element={<Home onLogout={onLogoutHandler} name={auth.name}></Home>}></Route>
+                                <Route path='/add' element={<Add></Add>}></Route>
+                                <Route path='/detailed/:id' element={<DetailedNote/>}></Route>
+                            </Routes>
+                        </>
+                    }
+                </div>
             </ThemeContext.Provider>
             }
         </>

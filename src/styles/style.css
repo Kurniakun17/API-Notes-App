@@ -155,7 +155,7 @@ main {
 }
 
 .detail-page__createdAt {
-  color: var(--on-background-grey)
+  color: var(--background)
 }
 
 .detail-page__body {
@@ -296,7 +296,7 @@ main {
   font-size: 28px;
 }
 
-.login-container, .register-container, .add-container{
+.body-container{
   background-color: var(--on-background);
   color: var(--background);
   padding-top: 5vh;

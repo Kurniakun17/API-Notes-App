@@ -16,7 +16,7 @@ export default function Navbar({auth}) {
                 <li><Link>Archived</Link></li>
                 <li></li>
             </ul>}
-            {theme==='light'?<BsMoon onClick={toggleTheme} size={30}/>:<BsSun onClick={toggleTheme} size={30}></BsSun>}
+            {theme==='light'?<BsMoon onClick={toggleTheme} size={30} />:<BsSun onClick={toggleTheme} size={30}></BsSun>}
         </div>
     </header>
   )
