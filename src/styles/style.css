@@ -7,13 +7,13 @@
   --navbg: linear-gradient(to right, #0cebeb, #20e3b2, #29ffc6); ;
   --error: #CF6679;
   --warning: #F39C12;
-  --on-background: #FFFFFF;
+  --on-background: #eaeaea;
   --on-background-grey: #c7c7c7;
   --on-surface: #FFFFFF;
 }
 
 [data-theme="light"] {
-  --background: #DDDDDD;
+  --background: #dedede;
   --navbg:linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
   --suface: #FFFFFF;
   --on-background: #333333;
@@ -58,9 +58,6 @@ header {
   flex-direction: row;
 }
 
-.navigation a{
-  text-decoration: none;
-}
 
 header .navigation ul li {
   display: inline-block;
@@ -86,7 +83,7 @@ main {
 .home-header{
   display: flex;
   justify-content: space-between;
-  margin: 10px 0px;
+  margin: 0px;
   border-bottom: 1px solid var(--background);
   margin-bottom: 2em;
 }
@@ -100,19 +97,22 @@ main {
   grid-template-columns: 1fr;
   gap: 16px;
   padding: 16px 0;
-  /* margin-top: 20px; */
 }
 
-.notes-list-empty .error-not-found{
-  margin: auto;
-  padding: 16px 8px;
-  width: 100%;
-  height: 100%;
+.notes-list-empty {
+  justify-content: center;
+  display: block;
+  min-height: 40vh;
+  margin-top: 20px;
 }
 
 .notes-list-empty p .error-not-found p{
   text-align: center;
   color: var(--on-background-grey);
+}
+
+.detail-page .note-item{
+  padding: 40px;
 }
 
 .note-item {
@@ -128,7 +128,7 @@ main {
 }
 
 .note-item__createdAt {
-  color: var(--on-background-grey);
+  color: var(--background);
   font-size: 14px;
   margin: 4px 0;
 }
@@ -160,8 +160,9 @@ main {
 
 .detail-page__body {
   line-height: 1.5;
-  margin-top: 36px;
+  margin: 24px 0;
   font-size: 18px;
+  min-height: 300px;
 }
 
 .detail-page__action, .homepage__action, .add-new-page__action {
@@ -213,13 +214,13 @@ main {
   margin-top: 15px;
 }
 
-.button-container > :nth-child(2){
-  margin: 15px 10px 0px 10px;
-}
-
 .button:hover{
   background-color: var(--background);
-  color: white;
+  color: var(--on-background);
+}
+
+.button-container > :nth-child(2){
+  margin: 15px 10px 0px 10px;
 }
 
 .add-new-page__input .add-new-page__input__title {
@@ -233,7 +234,9 @@ main {
   padding: 10px 10px;
   border: 1px solid var(--background);
   border-radius: 10px;
+  margin: 16px 0px;
 }
+
 
 .add-new-page__input__title::placeholder {
   color: var(--on-background-grey);
@@ -299,7 +302,7 @@ main {
 .body-container{
   background-color: var(--on-background);
   color: var(--background);
-  padding-top: 5vh;
+  padding: 3vh 32px 16px 32px;
   min-height: 100vh;
 }
 

@@ -13,6 +13,7 @@ export default function Home({onLogout, name}) {
           setLoading(false);
       })
   },[])
+
   return (
       <div className="home-container">
         <div className="home-header">
@@ -23,13 +24,14 @@ export default function Home({onLogout, name}) {
           </div>
         </div>
         <h1>Active Notes</h1>
-        <div className='notes-body'>
           {loading ? 
           <div className='notes-list-empty'>
             <p>Loading . . .</p>
           </div> : 
-          <NotesList notes={notes}></NotesList>}
-        </div>
+          notes.length !== 0 ? <NotesList notes={notes}></NotesList> :
+          <div className='notes-list-empty'>
+            <p>Catatan Kosong!</p>
+          </div>}
       </div>
   )
 }

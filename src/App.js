@@ -8,13 +8,12 @@ import Home from './pages/Home';
 import ThemeContext from './contexts/ThemeContext';
 import Add from './pages/Add';
 import DetailedNote from './pages/DetailedNote';
+import Archived from './pages/Archived';
 
 export default function App() {
     const [auth, setAuth] = useState();
     const [theme, setTheme] = useState(localStorage.getItem('theme')||'light');
     const [initializing, setInitializing] = useState(true);
-    const [notes, setNotes] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
         getUserLogged().then(({error, data})=>{
@@ -75,6 +74,7 @@ export default function App() {
                             <Routes>
                                 <Route path='/' element={<Home onLogout={onLogoutHandler} name={auth.name}></Home>}></Route>
                                 <Route path='/add' element={<Add></Add>}></Route>
+                                <Route path='/archived' element={<Archived></Archived>}></Route>
                                 <Route path='/detailed/:id' element={<DetailedNote/>}></Route>
                             </Routes>
                         </>

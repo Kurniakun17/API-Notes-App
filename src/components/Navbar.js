@@ -13,8 +13,7 @@ export default function Navbar({auth}) {
             {auth && 
             <ul>
                 <li><Link to={'/add'}>Add Note</Link></li>
-                <li><Link>Archived</Link></li>
-                <li></li>
+                <li><Link to={'/archived'}>Archived</Link></li>
             </ul>}
             {theme==='light'?<BsMoon onClick={toggleTheme} size={30} />:<BsSun onClick={toggleTheme} size={30}></BsSun>}
         </div>
