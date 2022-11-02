@@ -1,10 +1,12 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom';
+import LocaleContext from '../contexts/LocaleContext';
 import { showFormattedDate } from '../utils'
+import PropTypes from 'prop-types';
 
-export default function NoteItem({id, title, createdAt, body, archived, onDelete,}) {
-    const navigate = useNavigate();
-    createdAt = showFormattedDate(createdAt);
+export default function NoteItem({id, title, createdAt, body}) {
+    const {locale} = useContext(LocaleContext);
+    createdAt = showFormattedDate(createdAt, locale);
 
     return (
         <div className='note-item'>
@@ -19,4 +21,11 @@ export default function NoteItem({id, title, createdAt, body, archived, onDelete
             </p>
         </div>
     )
+}
+
+NoteItem.propTypes={
+    id:PropTypes.string.isRequired, 
+    title:PropTypes.string.isRequired,
+    createdAt:PropTypes.string.isRequired,
+    body:PropTypes.string.isRequired
 }

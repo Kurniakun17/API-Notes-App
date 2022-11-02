@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types';
 import NoteItem from './NoteItem';
 
 export default function NotesList({notes, keyword}) {
@@ -14,4 +14,9 @@ export default function NotesList({notes, keyword}) {
             })}
         </div>
     )
+}
+
+NotesList.propTypes={
+    notes:PropTypes.array,
+    keyword:PropTypes.string,
 }

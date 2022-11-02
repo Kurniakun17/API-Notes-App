@@ -1,6 +1,7 @@
 import React from 'react'
 import LoginInput from '../components/LoginInput';
 import { login } from '../utils/network-data';
+import PropTypes from 'prop-types'
 
 export default function Login({LoginSucces}) {
     async function onLogin(user){
@@ -9,11 +10,15 @@ export default function Login({LoginSucces}) {
             LoginSucces(data);
         }
     }
-
+    
     return (
         <div className='login-container'>
             <h1>Login</h1>
             <LoginInput onLogin={onLogin}></LoginInput>
         </div>
     )
+}
+
+Login.propTypes={
+    onLogin:PropTypes.func
 }

@@ -1,4 +1,4 @@
-[data-theme="dark"] {
+[data-theme="light"] {
   --primary: #BB86FC;
   --primary-variant: #3700B3;
   --secondary: #03DAC6;
@@ -12,7 +12,7 @@
   --on-surface: #FFFFFF;
 }
 
-[data-theme="light"] {
+[data-theme="dark"] {
   --background: #dedede;
   --navbg:linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
   --suface: #FFFFFF;
@@ -368,8 +368,22 @@ main {
 }
 
 /* Icons */
+.icon-container{
+  align-items: center;
+  display: flex;
+  gap: 15px;
+}
 
-=
+.icon-container h1{
+  cursor: pointer;
+  color: var(--background);
+}
+
+.theme-icon{
+  cursor: pointer;
+}
+
+
 @media screen and (min-width: 650px) {
   .notes-list {
     grid-template-columns: repeat(2, 1fr);

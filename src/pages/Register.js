@@ -3,7 +3,6 @@ import { register } from '../utils/network-data';
 import RegisterInput from '../components/RegisterInput';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function Register() {
     const navigate = useNavigate();
     async function onRegisterHandler(name,email,password,confirm){

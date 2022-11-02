@@ -6,6 +6,7 @@ import { getUserLogged, putAccessToken } from './utils/network-data';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ThemeContext from './contexts/ThemeContext';
+import LocaleContext from './contexts/LocaleContext';
 import Add from './pages/Add';
 import DetailedNote from './pages/DetailedNote';
 import Archived from './pages/Archived';
@@ -14,6 +15,7 @@ export default function App() {
     const [auth, setAuth] = useState();
     const [theme, setTheme] = useState(localStorage.getItem('theme')||'light');
     const [initializing, setInitializing] = useState(true);
+    const [locale, setLocale] = useState(localStorage.getItem('locale') || 'en');
 
     useEffect(()=>{
         getUserLogged().then(({error, data})=>{
@@ -40,6 +42,15 @@ export default function App() {
         putAccessToken('')
     }
 
+    function toggleLocale(){
+        setLocale((prevLocale)=>{
+            const newLocale = prevLocale === 'en'?'id':'en';
+
+            localStorage.setItem('locale',newLocale);
+            return newLocale
+        })
+    }
+
     function toggleTheme(){
         setTheme((prevTheme)=>{
             const newTheme = prevTheme === 'light' ? 'dark' : 'light';
@@ -48,6 +59,13 @@ export default function App() {
             return newTheme
         })
     }
+
+    const LocaleContextValue = useMemo(()=>{
+        return{
+            locale,
+            toggleLocale
+        }
+    },[locale])
 
     const ThemeContextValue = useMemo(()=>{
         return{
@@ -60,26 +78,26 @@ export default function App() {
     return (<>
             {initializing ? null :
             <ThemeContext.Provider value={ThemeContextValue}>
-                <Navbar auth={auth}></Navbar>
-                <div className='body-container'>
-                    {!auth && 
-                    <Routes>
-                        <Route path='/*' element={<Login LoginSucces={LoginSucces}></Login>}/>
-                        <Route path='/register' element={<Register></Register>}/>
-                    </Routes>
-                    }
-                    {
-                        auth && 
-                        <>
+                <LocaleContext.Provider value={LocaleContextValue}>
+                    <Navbar auth={auth}></Navbar>
+                    <div className='body-container'>
+                        {!auth && 
+                        <Routes>
+                            <Route path='/*' element={<Login LoginSucces={LoginSucces}></Login>}/>
+                            <Route path='/register' element={<Register></Register>}/>
+                        </Routes>
+                        }
+                        {
+                            auth && 
                             <Routes>
                                 <Route path='/' element={<Home onLogout={onLogoutHandler} name={auth.name}></Home>}></Route>
                                 <Route path='/add' element={<Add></Add>}></Route>
                                 <Route path='/archived' element={<Archived></Archived>}></Route>
                                 <Route path='/detailed/:id' element={<DetailedNote/>}></Route>
                             </Routes>
-                        </>
-                    }
-                </div>
+                        }
+                    </div>
+                </LocaleContext.Provider>
             </ThemeContext.Provider>
             }
         </>

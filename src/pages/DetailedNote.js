@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { showFormattedDate } from '../utils';
 import { archiveNote, deleteNote, getNote, unarchiveNote } from '../utils/network-data';
 import Button from '../components/Button'
+import LocaleContext from '../contexts/LocaleContext';
 
 export default function DetailedNote() {
   const navigate = useNavigate();
 
+  const {locale} = useContext(LocaleContext);
   const [loading, setLoading] = useState(true);
   const {id} = useParams();
   const [note, setNote] = useState(async ()=>{
@@ -37,7 +39,6 @@ export default function DetailedNote() {
     navigate('/')
   }
 
-
   return (
     <div className='detail-page'>
       <div className="note-item">
@@ -51,9 +52,8 @@ export default function DetailedNote() {
           {note.body}
         </p>
         <div className="button-container">
-          <Button value={'Edit'} ></Button>
-          {note.archived?<Button value={'Unarchived'} func={()=>onUnarchivedHandler(id)} ></Button>:<Button value={'Archived'} func={()=>onArchivedHandler(id)}></Button>}
-          <Button value={'Delete'} func={()=>onDeleteHandler(id)}></Button>
+          {note.archived?<Button value={locale ==='en'?'Unarchived':'Batal Arsip'} func={()=>onUnarchivedHandler(id)} ></Button>:<Button value={locale ==='en'?'Archived':'Arsip'} func={()=>onArchivedHandler(id)}></Button>}
+          <Button value={locale ==='en'?'Delete':'Hapus'} func={()=>onDeleteHandler(id)}></Button>
         </div>
       </div>
     </div>
