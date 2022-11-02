@@ -270,11 +270,11 @@ main {
   margin: 16px 0;
   font-family: 'Inter', sans-serif;
   background-color: transparent;
-  border: 1px solid var(--on-background);
+  border: 1px solid var(--background);
   border-radius: 4px;
   padding: 8px;
   width: 100%;
-  color: var(--on-background);
+  color: var(--background);
 }
 
 .search-bar input::placeholder {

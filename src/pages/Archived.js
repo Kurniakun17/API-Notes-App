@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import NotesList from '../components/NotesList';
 import { getArchivedNotes } from '../utils/network-data';
+import SearchBar from '../components/SearchBar';
+import UseInput from '../contexts/UseInput';
 
 export default function Archived() {
     const [notes, setNotes] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [keyword, setKeyword] = UseInput('');
 
     useEffect(()=>{
         getArchivedNotes().then(({error, data})=>{
@@ -24,7 +27,8 @@ export default function Archived() {
     return (
         <div>
             <h1>Archived Notes</h1>
-            <NotesList notes={notes}></NotesList>
+            <SearchBar keyword={keyword} onKeywordChange={setKeyword}></SearchBar>
+            <NotesList notes={notes} keyword={keyword}></NotesList>
         </div>
     )
 }

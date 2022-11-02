@@ -1,7 +1,10 @@
 import React from 'react'
 
-export default function SearchBar({keyword, onKeywordChange}) {
+export default function SearchBar({keyword,onKeywordChange}) {
+
   return (
-    <div>SearchBar</div>
+    <div className='search-bar'>
+      <input value={keyword} onChange={onKeywordChange}></input>
+    </div>
   )
 }
